@@ -4,7 +4,7 @@ import { MethodInfo } from '../api';
 @Injectable()
 export class QnaService {
   private static requestPromise = require('request-promise');
-  private static PYTHON_URI: string = 'http://202.31.202.147:5000/';
+  private static PYTHON_URI: string = 'http://202.31.202.147:5000/qna';
 
   getAnswerForQuestion(question) {
     const result = this.accessPythonSever(question);
@@ -20,6 +20,7 @@ export class QnaService {
         question: question,
       },
     };
+    console.log(question);
     await QnaService.requestPromise(request_option, async (err, res, body) => {
       result = body;
     });
